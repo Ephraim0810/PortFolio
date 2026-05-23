@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ciphertext Frequency Decoder · Ephraim Toji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+<style>
+  /* Sentinel/cipher themed visual: ASCII frequency block as placeholder hero */
+  .cipher-hero{
+    background:linear-gradient(135deg,#0A0A0A 0%, #1A1A1A 100%);
+    color:#fafaf7;border-radius:var(--radius);
+    padding:48px;margin-top:32px;
+    font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.7;
+    position:relative;overflow:hidden;
+  }
+  .cipher-hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 50%, rgba(194,65,12,0.18), transparent 60%);
+    pointer-events:none;
+  }
+  .cipher-hero .row{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
+  .cipher-hero .letter{font-weight:500;color:#fafaf7;width:18px;display:inline-block}
+  .cipher-hero .bar{height:8px;background:rgba(250,250,247,0.12);border-radius:2px;flex:1;overflow:hidden;position:relative}
+  .cipher-hero .bar span{display:block;height:100%;background:#C2410C;border-radius:2px}
+  .cipher-hero .pct{color:rgba(250,250,247,0.55);font-size:12px;width:48px;text-align:right}
+
+  /* placeholder for missing logo */
+  .logo-placeholder{
+    background:linear-gradient(135deg,#0A0A0A 0%, #1A1A1A 100%);
+    color:#fafaf7;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:20px;letter-spacing:0.04em;
+  }
+  .logo-placeholder span{color:#C2410C}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">E</span>
+      Ephraim<small>/ AI</small>
+    </a>
+    <a href="../index.html#projects" class="back-link">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6H3M6 3L3 6l3 3"/></svg>
+      All projects
+    </a>
+  </div>
+</header>
+
+<section class="proj-hero">
+  <div class="proj-wrap">
+    <div class="proj-eyebrow"><span class="dot"></span>Sentinel Programme · MINDEF · 2023</div>
+    <h1><em>Ciphertext</em> Frequency Decoder — a small tool for breaking substitution ciphers.</h1>
+    <p class="proj-lead">A second-year Sentinel Programme project. Substitution ciphers leak their secrets through letter-frequency distributions — this tool exploits that, matching the frequency profile of an encrypted message against standard English to suggest the most likely plaintext mapping.</p>
+    <p style="margin-top:8px"><a class="live-btn" href="https://jsfiddle.net/s9ruc3kg/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:11px 18px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:-0.005em;text-decoration:none">
+      Try it live on JSFiddle
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" style="width:11px;height:11px"><path d="M3 9l6-6M4 3h5v5"/></svg>
+    </a></p>
+    <div class="proj-meta">
+      <div class="col"><span class="k">Year</span><span class="v">2023</span></div>
+      <div class="col"><span class="k">Programme</span><span class="v">Sentinel · MINDEF · Year 2</span></div>
+      <div class="col"><span class="k">Focus</span><span class="v">Cryptanalysis · Frequency analysis</span></div>
+      <div class="col"><span class="k">Stack</span><span class="v">JavaScript · HTML · CSS</span></div>
+      <div class="col"><span class="k">Live</span><span class="v"><a href="https://jsfiddle.net/s9ruc3kg/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px">JSFiddle ↗</a></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-wrap">
+    <h2>The idea</h2>
+    <p>In English, <span style="font-family:var(--mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">E</span> appears far more often than <span style="font-family:var(--mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">Z</span>. A simple substitution cipher just shuffles which letter stands in for which — but it leaves the frequency profile intact. Count letters, compare against the standard English distribution, and you've got a head start on the key.</p>
+
+    <div class="cipher-hero">
+      <div class="row"><span class="letter">E</span><div class="bar"><span style="width:100%"></span></div><span class="pct">12.7%</span></div>
+      <div class="row"><span class="letter">T</span><div class="bar"><span style="width:71%"></span></div><span class="pct">9.1%</span></div>
+      <div class="row"><span class="letter">A</span><div class="bar"><span style="width:64%"></span></div><span class="pct">8.2%</span></div>
+      <div class="row"><span class="letter">O</span><div class="bar"><span style="width:60%"></span></div><span class="pct">7.5%</span></div>
+      <div class="row"><span class="letter">I</span><div class="bar"><span style="width:55%"></span></div><span class="pct">7.0%</span></div>
+      <div class="row"><span class="letter">N</span><div class="bar"><span style="width:54%"></span></div><span class="pct">6.7%</span></div>
+      <div class="row"><span class="letter">S</span><div class="bar"><span style="width:50%"></span></div><span class="pct">6.3%</span></div>
+      <div class="row"><span class="letter">H</span><div class="bar"><span style="width:48%"></span></div><span class="pct">6.1%</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-wrap">
+    <h2>How it works</h2>
+    <p>Three stages — count, compare, refine.</p>
+
+    <div class="process">
+      <div class="process-step">
+        <div class="step-n">01 · COUNT</div>
+        <h4>Frequency profile</h4>
+        <p>Walk the ciphertext once and count occurrences of each letter, ignoring case, whitespace and punctuation. Normalise to percentages so messages of any length can be compared.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-n">02 · MATCH</div>
+        <h4>Compare to English</h4>
+        <p>Sort cipher letters by frequency and align them against the standard English distribution. The top of each list becomes the initial best-guess mapping.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-n">03 · REFINE</div>
+        <h4>Hand-edit the key</h4>
+        <p>The first pass is rarely perfect. The UI lets you swap individual mappings and immediately see the plaintext update — frequency analysis as a starting point, human pattern-matching as the finish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-wrap">
+    <h2>What I took from it</h2>
+    <p>Three lessons that quietly carried into the AI work I do now.</p>
+    <div class="features">
+      <div class="feat"><span class="n">01</span><span class="t">Patterns in data are the entire game</span></div>
+      <div class="feat"><span class="n">02</span><span class="t">Simple statistics beat brute force, almost always</span></div>
+      <div class="feat"><span class="n">03</span><span class="t">A good UI turns analysis into a conversation, not a wait</span></div>
+    </div>
+    <div class="award">
+      <div class="award-icon">◆</div>
+      <div>
+        <h3>The on-ramp into AI</h3>
+        <p>Frequency analysis is, in a quiet way, a tiny machine-learning system: you build a model of the world (the English distribution), measure how well your data fits it, and iterate. The Sentinel Programme is what put me on that road.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="proj-nav">
+  <div class="proj-nav-grid">
+    <a href="lemi-lens.html">
+      <span class="dir">← Previous project</span>
+      <span class="title">Lemi Lens · Capstone</span>
+    </a>
+    <a href="image-safe.html" class="next">
+      <span class="dir">Next project →</span>
+      <span class="title">Image Safe · Sentinel Year 1</span>
+    </a>
+  </div>
+</nav>
+
+<footer class="mini">
+  © 2026 Ephraim Toji · <a href="mailto:ephraimtoji@gmail.com">ephraimtoji@gmail.com</a>
+</footer>
+
+</body>
+</html>

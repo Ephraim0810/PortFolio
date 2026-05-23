@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Image Safe · Sentinel Year 1 · Ephraim Toji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="project.css">
+<style>
+  /* Safe-themed hero: a stylised keypad next to a locked photo slot */
+  .safe-hero{
+    background:linear-gradient(135deg,#0A0A0A 0%, #1A1A1A 100%);
+    color:#fafaf7;border-radius:var(--radius);
+    padding:48px;margin-top:32px;
+    display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .safe-hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 30%, rgba(194,65,12,0.16), transparent 60%);
+    pointer-events:none;
+  }
+  .safe-hero h3{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:-0.02em;margin:0 0 12px;color:#fff;position:relative;z-index:1}
+  .safe-hero p{font-size:14.5px;color:rgba(250,250,247,0.65);margin:0 0 24px;max-width:none;line-height:1.6;position:relative;z-index:1}
+  .safe-hero .display{
+    font-family:'JetBrains Mono',monospace;font-size:24px;letter-spacing:0.4em;
+    background:rgba(0,0,0,0.4);border:1px solid rgba(250,250,247,0.08);
+    padding:14px 18px;border-radius:10px;margin-bottom:14px;color:#C2410C;
+    position:relative;z-index:1;
+  }
+
+  .keypad{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+    position:relative;z-index:1;
+  }
+  .key{
+    aspect-ratio:1.2/1;background:rgba(250,250,247,0.06);
+    border:1px solid rgba(250,250,247,0.08);
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;
+    color:#fafaf7;transition:background .2s ease;
+  }
+  .key.zero{grid-column:2}
+  .key.muted{color:rgba(250,250,247,0.4);font-size:11px;letter-spacing:0.1em}
+  .key.accent{background:rgba(194,65,12,0.15);border-color:rgba(194,65,12,0.35);color:#C2410C}
+
+  .photo-slot{
+    aspect-ratio:1/1;background:rgba(0,0,0,0.4);border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;z-index:1;border:1px solid rgba(250,250,247,0.08);
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;
+    color:rgba(250,250,247,0.4);text-transform:uppercase;
+  }
+  .photo-slot .lock{font-family:var(--display);font-size:64px;color:#C2410C;margin-bottom:6px;line-height:1}
+  .photo-slot .col{display:flex;flex-direction:column;align-items:center;gap:8px}
+
+  @media (max-width:760px){
+    .safe-hero{grid-template-columns:1fr;gap:24px;padding:28px}
+  }
+
+  .live-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:#fff;padding:11px 18px;border-radius:999px;
+    font-size:13px;font-weight:500;letter-spacing:-0.005em;text-decoration:none;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .live-btn:hover{background:#222;transform:translateY(-1px)}
+  .live-btn svg{width:11px;height:11px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">E</span>
+      Ephraim<small>/ AI</small>
+    </a>
+    <a href="../index.html#projects" class="back-link">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6H3M6 3L3 6l3 3"/></svg>
+      All projects
+    </a>
+  </div>
+</header>
+
+<section class="proj-hero">
+  <div class="proj-wrap">
+    <div class="proj-eyebrow"><span class="dot"></span>Sentinel Programme · MINDEF · Year 1 · 2022</div>
+    <h1><em>Image Safe</em> — a passcode-locked photo vault, in a browser.</h1>
+    <p class="proj-lead">My first-year Sentinel Programme project, and one of the first interactive things I ever built. A tiny web app that lets you drop in a photo, lock it behind a numeric passcode entered on an on-screen keypad, and unlock it again — borrowing the metaphor of a hotel-room safe.</p>
+    <p style="margin-top:8px"><a class="live-btn" href="https://jsfiddle.net/9zvhtLys/" target="_blank" rel="noopener">
+      Try it live on JSFiddle
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l6-6M4 3h5v5"/></svg>
+    </a></p>
+    <div class="proj-meta">
+      <div class="col"><span class="k">Year</span><span class="v">2022</span></div>
+      <div class="col"><span class="k">Programme</span><span class="v">Sentinel · MINDEF · Year 1</span></div>
+      <div class="col"><span class="k">Concept</span><span class="v">Passcode-protected photo vault</span></div>
+      <div class="col"><span class="k">Stack</span><span class="v">Vanilla JS · HTML · CSS</span></div>
+      <div class="col"><span class="k">Live</span><span class="v"><a href="https://jsfiddle.net/9zvhtLys/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px">JSFiddle ↗</a></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-wrap">
+    <h2>The concept</h2>
+    <p>Year 1 of Sentinel was about getting fluent with the basics — JavaScript, the DOM, and the idea that even a few lines of code can produce something tangibly useful. I leaned into the <em>safe</em> metaphor: a numeric keypad, a lock button, an unlock button, and a single photo slot that only reveals its contents when you enter the right code.</p>
+
+    <div class="safe-hero">
+      <div>
+        <h3>One photo, one passcode.</h3>
+        <p>Set a numeric code on the keypad, paste a photo URL, hit lock. The photo disappears. To get it back, the code has to match — otherwise the slot stays empty.</p>
+        <div class="display">• • • •</div>
+        <div class="keypad" aria-hidden="true">
+          <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+          <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+          <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+          <div class="key muted">CLR</div><div class="key zero">0</div><div class="key accent">LOCK</div>
+        </div>
+      </div>
+      <div class="photo-slot" aria-hidden="true">
+        <div class="col">
+          <div class="lock">◆</div>
+          <span>Locked</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-wrap">
+    <h2>How it works</h2>
+    <p>A small finite state machine wrapped around four DOM elements. No backend, no storage — just enough JS to make the metaphor work end-to-end.</p>
+
+    <div class="process">
+      <div class="process-step">
+        <div class="step-n">01 · INPUT</div>
+        <h4>Image URL + passcode</h4>
+        <p>The user pastes a photo URL (live-previewed in the image slot) and types a numeric passcode by clicking on-screen keypad buttons. A clear button resets the field.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-n">02 · LOCK</div>
+        <h4>Stash the state, hide the photo</h4>
+        <p>Hitting <span style="font-family:var(--mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">Lock</span> stores the passcode in memory, blanks the image source, clears the inputs, and swaps the button to <span style="font-family:var(--mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">Unlock</span>.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-n">03 · UNLOCK</div>
+        <h4>Match, then reveal</h4>
+        <p>The user types their code again; if it matches the stored value, the original photo URL is restored to the image element and the safe re-opens. Otherwise nothing happens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-section">
+  <div class="proj-wrap">
+    <h2>What I took from it</h2>
+    <p>Small project, surprisingly transferable lessons.</p>
+    <div class="features">
+      <div class="feat"><span class="n">01</span><span class="t">A familiar metaphor does most of the UX work</span></div>
+      <div class="feat"><span class="n">02</span><span class="t">DOM events are a state machine in disguise</span></div>
+      <div class="feat"><span class="n">03</span><span class="t">Code that <em>feels</em> like an object — keypad, button, slot — is easier to reason about</span></div>
+    </div>
+    <div class="award">
+      <div class="award-icon">◆</div>
+      <div>
+        <h3>The first thing I ever shipped</h3>
+        <p>It's a tiny project — under a hundred lines of JS — but Image Safe was my first end-to-end interactive thing. Year 1 of Sentinel built the muscle; Year 2 (and the Ciphertext Decoder) pointed it somewhere harder.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="proj-nav">
+  <div class="proj-nav-grid">
+    <a href="ciphertext-decoder.html">
+      <span class="dir">← Previous project</span>
+      <span class="title">Ciphertext Decoder · Sentinel Y2</span>
+    </a>
+    <a href="../index.html#projects" class="next">
+      <span class="dir">Back to portfolio →</span>
+      <span class="title">All projects</span>
+    </a>
+  </div>
+</nav>
+
+<footer class="mini">
+  © 2026 Ephraim Toji · <a href="mailto:ephraimtoji@gmail.com">ephraimtoji@gmail.com</a>
+</footer>
+
+</body>
+</html>
